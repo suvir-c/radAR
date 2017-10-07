@@ -33,6 +33,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     func makeBearNode() -> SCNNode {
         let node = SCNNode(mdlObject: bearObject)
+        
+        node.position = SCNVector3(x: 0, y: -4, z: 0)
+        node.scale = SCNVector3(x: 0.1, y: 0.1, z: 0.1)
+        
         return node
     }
     
@@ -71,9 +75,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         
         let node = makeBearNode()
-        
-        node.position = SCNVector3(x: 0, y: 0, z: 0)
-        node.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
+    
     }
 
     
