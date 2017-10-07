@@ -13,6 +13,8 @@
 		7531C5C51F88AD91009223EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7531C5C31F88AD91009223EC /* Main.storyboard */; };
 		7531C5C71F88AD91009223EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7531C5C61F88AD91009223EC /* Assets.xcassets */; };
 		7531C5CA1F88AD91009223EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7531C5C81F88AD91009223EC /* LaunchScreen.storyboard */; };
+		7531C5D31F88DAE0009223EC /* bear.obj in Resources */ = {isa = PBXBuildFile; fileRef = 7531C5D11F88CCC6009223EC /* bear.obj */; };
+		7531C5D41F88DAE3009223EC /* bear.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 7531C5D21F88CCC6009223EC /* bear.mtl */; };
 		BAB8A79E1F88B08D00464DE9 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB8A79D1F88B08D00464DE9 /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
@@ -134,7 +136,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7531C5C01F88AD91009223EC /* art.scnassets in Resources */,
+				7531C5D31F88DAE0009223EC /* bear.obj in Resources */,
 				7531C5CA1F88AD91009223EC /* LaunchScreen.storyboard in Resources */,
+				7531C5D41F88DAE3009223EC /* bear.mtl in Resources */,
 				7531C5C71F88AD91009223EC /* Assets.xcassets in Resources */,
 				7531C5C51F88AD91009223EC /* Main.storyboard in Resources */,
 			);
