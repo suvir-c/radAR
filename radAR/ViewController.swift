@@ -10,6 +10,9 @@ import UIKit
 import SceneKit
 import ARKit
 import CoreLocation
+import SceneKit
+import ModelIO
+import SceneKit.ModelIO
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
@@ -23,12 +26,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    lazy var bearObject: MDLObject = {
+        let bearObjectURL = Bundle.main.url(forResource: "bear", withExtension: "obj")!
+        return MDLAsset(url: bearObjectURL).object(at: 0)
+    }()
+
+    func makeBearNode() -> SCNNode {
+        let node = SCNNode(mdlObject: bearObject)
+        
+        return node
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
         let scene = SCNScene()
         sceneView.scene = scene
         
+        let bearNode = makeBearNode()
+        
+        sceneView.scene.rootNode.addChildNode(bearNode)
+
         // Comment next line once app is ready - good to check performance
         sceneView.showsStatistics = true
     }
@@ -48,6 +66,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
+    
+    
 
     // MARK: - ARSCNViewDelegate
     
@@ -98,5 +118,18 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
         print("\(error)")
+    }
+}
+
+// MARK: - MDLMaterial
+extension MDLMaterial {
+    func setTextureProperties(textures: [MDLMaterialSemantic:String]) -> Void {
+        for (key,value) in textures {
+            guard let url = Bundle.main.url(forResource: value, withExtension: "") else {
+                fatalError("Failed to find URL for resource \(value).")
+            }
+            let property = MDLMaterialProperty(name:value, semantic: key, url: url)
+            self.setProperty(property)
+        }
     }
 }

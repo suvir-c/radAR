@@ -25,6 +25,8 @@
 		7531C5C61F88AD91009223EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7531C5C91F88AD91009223EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7531C5CB1F88AD91009223EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7531C5D11F88CCC6009223EC /* bear.obj */ = {isa = PBXFileReference; lastKnownFileType = text; name = bear.obj; path = "../../../Downloads/bear-obj/bear.obj"; sourceTree = "<group>"; };
+		7531C5D21F88CCC6009223EC /* bear.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; name = bear.mtl; path = "../../../Downloads/bear-obj/bear.mtl"; sourceTree = "<group>"; };
 		BAB8A79D1F88B08D00464DE9 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,8 @@
 				7531C5C81F88AD91009223EC /* LaunchScreen.storyboard */,
 				7531C5CB1F88AD91009223EC /* Info.plist */,
 				BAB8A79D1F88B08D00464DE9 /* UserDefaults.swift */,
+				7531C5D21F88CCC6009223EC /* bear.mtl */,
+				7531C5D11F88CCC6009223EC /* bear.obj */,
 			);
 			path = radAR;
 			sourceTree = "<group>";
