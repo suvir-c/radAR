@@ -9,10 +9,19 @@
 import UIKit
 import SceneKit
 import ARKit
+import CoreLocation
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    
+    fileprivate let locationManager = CLLocationManager()
+    
+    var mostRecentUserLocation: CLLocation? {
+        didSet {
+            print("LOADED USER LOCATION")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,5 +85,30 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension ViewController: CLLocationManagerDelegate {
+    
+    func setUpLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    // Updates location variable every time location changes
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        mostRecentUserLocation = locations[0] as CLLocation
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("\(error)")
     }
 }
