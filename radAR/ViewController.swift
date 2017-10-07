@@ -20,7 +20,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     var urlPath = "http://192.241.200.251/arobject/"
     
-    var param = ["lat": "37.8710434", "long": "-122.2507729", "alt": "10"]
+    var param = ["lat": "37.8710439", "long": "-122.2507724", "alt": "10"]
     
     fileprivate let locationManager = CLLocationManager()
     
@@ -43,20 +43,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var targetArray: [Target] = [] {
         didSet {
             guard let userLocation = mostRecentUserLocation else {
+                print("yo this doesn't work")
                 return
             }
             
             for target in targetArray {
                 //update existing node if it exists
                 if let existingNode = targetNodes[target.id] {
+                    print("node already exists")
                     let move = SCNAction.move (
                         to: target.sceneKitCoordinate(relativeTo: userLocation),
                         duration: TimeInterval(5))
                     
+                    print("\(target.sceneKitCoordinate(relativeTo: userLocation))")
                     existingNode.runAction(move)
                 }
                     // otherwise, make a new node
                 else {
+                    print("umm it thinks that the node already exists")
                     let newNode = makeBearNode()
                     targetNodes[target.id] = newNode
                     
@@ -71,20 +75,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         guard let targetData = text.toJSON() as? [[String: Any]] else {
             return
         }
-        
+
         targetArray = targetData.map { target in
             let id = target["call"] as? String ?? "Unknown"
             let lat = target["lat"] as? Double ?? 0
             let long = target["lng"] as? Double ?? 0
             let alt = target["alt"] as? Double ?? 0
-            
+
             let target = Target(
                 id: id,
                 lat: lat,
                 long: long,
                 alt: alt
                 )
-            
+
             return target
             }.filter { target in
                 return (target.id != "Unknown")
@@ -134,15 +138,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let task = session.dataTask(with: request) { (data, response, error) in
             
-            if let data = data {
-                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                print(json)
+            let jsonString = "\(response!)"
+//            if let data = data {
+//                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+//
+            
+            self.processJson(text: jsonString)
+            
+                print(jsonString)
+//                print(json)
+                self.processJson(text: jsonString)
             }
+        setUpLocationManager()
         }
         
-        task.resume()
-        setUpLocationManager()
-    }
+//        task.resume()
+    
+//    }
+//}
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
