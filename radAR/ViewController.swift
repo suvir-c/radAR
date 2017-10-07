@@ -33,7 +33,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     func makeBearNode() -> SCNNode {
         let node = SCNNode(mdlObject: bearObject)
-        
         return node
     }
     
@@ -62,23 +61,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         // Pause the view's session
         sceneView.session.pause()
     }
-    
-    
 
     // MARK: - ARSCNViewDelegate
     
-/*
     // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        
+        let node = makeBearNode()
+        
+        node.position = SCNVector3(x: 0, y: 0, z: 0)
     }
-*/
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
