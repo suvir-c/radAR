@@ -16,6 +16,8 @@
 		7531C5D31F88DAE0009223EC /* bear.obj in Resources */ = {isa = PBXBuildFile; fileRef = 7531C5D11F88CCC6009223EC /* bear.obj */; };
 		7531C5D41F88DAE3009223EC /* bear.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 7531C5D21F88CCC6009223EC /* bear.mtl */; };
 		BAB8A79E1F88B08D00464DE9 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB8A79D1F88B08D00464DE9 /* UserDefaults.swift */; };
+		BAB8A7A11F88DA3C00464DE9 /* bear.obj in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A7A01F88D9A000464DE9 /* bear.obj */; };
+		BAB8A7A21F88DA4600464DE9 /* bear.mtl in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A79F1F88D99500464DE9 /* bear.mtl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +29,9 @@
 		7531C5C61F88AD91009223EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7531C5C91F88AD91009223EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7531C5CB1F88AD91009223EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7531C5D11F88CCC6009223EC /* bear.obj */ = {isa = PBXFileReference; lastKnownFileType = text; name = bear.obj; path = "../../../Downloads/bear-obj/bear.obj"; sourceTree = "<group>"; };
-		7531C5D21F88CCC6009223EC /* bear.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; name = bear.mtl; path = "../../../Downloads/bear-obj/bear.mtl"; sourceTree = "<group>"; };
 		BAB8A79D1F88B08D00464DE9 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		BAB8A79F1F88D99500464DE9 /* bear.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = bear.mtl; sourceTree = "<group>"; };
+		BAB8A7A01F88D9A000464DE9 /* bear.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = bear.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +72,8 @@
 				7531C5C81F88AD91009223EC /* LaunchScreen.storyboard */,
 				7531C5CB1F88AD91009223EC /* Info.plist */,
 				BAB8A79D1F88B08D00464DE9 /* UserDefaults.swift */,
-				7531C5D21F88CCC6009223EC /* bear.mtl */,
-				7531C5D11F88CCC6009223EC /* bear.obj */,
+				BAB8A7A01F88D9A000464DE9 /* bear.obj */,
+				BAB8A79F1F88D99500464DE9 /* bear.mtl */,
 			);
 			path = radAR;
 			sourceTree = "<group>";
@@ -136,9 +138,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7531C5C01F88AD91009223EC /* art.scnassets in Resources */,
-				7531C5D31F88DAE0009223EC /* bear.obj in Resources */,
+
+				BAB8A7A11F88DA3C00464DE9 /* bear.obj in Resources */,
 				7531C5CA1F88AD91009223EC /* LaunchScreen.storyboard in Resources */,
-				7531C5D41F88DAE3009223EC /* bear.mtl in Resources */,
+				BAB8A7A21F88DA4600464DE9 /* bear.mtl in Resources */,
+
 				7531C5C71F88AD91009223EC /* Assets.xcassets in Resources */,
 				7531C5C51F88AD91009223EC /* Main.storyboard in Resources */,
 			);
@@ -291,7 +295,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8GEKYYW3CQ;
+				DEVELOPMENT_TEAM = U7U96T5227;
 				INFOPLIST_FILE = radAR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = stanford.isBetter.radAR;
@@ -306,7 +310,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8GEKYYW3CQ;
+				DEVELOPMENT_TEAM = U7U96T5227;
 				INFOPLIST_FILE = radAR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = stanford.isBetter.radAR;
