@@ -71,8 +71,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    func processJson(text: String) {
-        guard let targetData = text.toJSON() as? [[String: Any]] else {
+    func processJson(text: Any?) {
+        guard let targetData = text as? [[String: Any]] else {
             return
         }
 
@@ -137,25 +137,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let session = URLSession.shared
         
         let task = session.dataTask(with: request) { (data, response, error) in
-            
-            let jsonString = "\(response!)"
-//            if let data = data {
-//                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-//
-            
-            self.processJson(text: jsonString)
-            
-                print(jsonString)
-//                print(json)
-                self.processJson(text: jsonString)
+        
+            if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                
+                self.processJson(text: json)
             }
+        }
+        task.resume()
         setUpLocationManager()
         }
         
-//        task.resume()
-    
-//    }
-//}
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
