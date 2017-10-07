@@ -101,10 +101,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         let scene = SCNScene()
         sceneView.scene = scene
-        
-        let bearNode = makeBearNode()
-        
-        sceneView.scene.rootNode.addChildNode(bearNode)
 
         // Comment next line once app is ready - good to check performance
         sceneView.showsStatistics = true
