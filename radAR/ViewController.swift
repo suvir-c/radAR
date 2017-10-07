@@ -50,7 +50,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 if let existingNode = targetNodes[target.id] {
                     let move = SCNAction.move (
                         to: target.sceneKitCoordinate(relativeTo: userLocation),
-                        duration: 0.2)
+                        duration: TimeInterval(5))
                     
                     existingNode.runAction(move)
                 }
