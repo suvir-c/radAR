@@ -54,7 +54,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
         
         let bearNode = makeBearNode()
+        
+        moveNode(bearNode, userLocation: mostRecentUserLocation!)
+        
         sceneView.scene.rootNode.addChildNode(bearNode)
+        
+        
         // Comment next line once app is ready - good to check performance
         sceneView.showsStatistics = true
     }
