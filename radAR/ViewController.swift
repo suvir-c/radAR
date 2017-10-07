@@ -116,6 +116,8 @@ extension ViewController: CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }
+        
+        mostRecentUserLocation = locationManager.location
     }
     
     // Updates location variable every time location changes
