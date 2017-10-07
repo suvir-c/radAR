@@ -20,10 +20,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     fileprivate let locationManager = CLLocationManager()
     
+    // Fake date rn because we don't have data
+    let target: Target = Target(lat: 37.8710434, long: -122.2507729, alt: 10)
+    
     var mostRecentUserLocation: CLLocation? {
         didSet {
             print("LOADED USER LOCATION")
         }
+    }
+    
+    // Put API call here
+    func moveNode(_ node: SCNNode, userLocation: CLLocation) {
+        let move = SCNAction.move(
+            to: target.sceneKitCoordinate(relativeTo: userLocation), duration: 0.2)
+        
+        node.runAction(move)
     }
     
     lazy var bearObject: MDLObject = {
@@ -33,10 +44,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     func makeBearNode() -> SCNNode {
         let node = SCNNode(mdlObject: bearObject)
-        
-        node.presentation.position = SCNVector3(x: 0, y: 0, z: 0)
-        node.presentation.scale = SCNVector3(x: 0.01, y: 0.01, z: 0.01)
-        
         return node
     }
     
@@ -47,9 +54,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
         
         let bearNode = makeBearNode()
-        
         sceneView.scene.rootNode.addChildNode(bearNode)
-
         // Comment next line once app is ready - good to check performance
         sceneView.showsStatistics = true
     }
@@ -74,7 +79,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // Override to create and configure nodes for anchors added to the view's session.
 //    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
 //
-////        let node = makeBearNode()
 //
 //    }
 
