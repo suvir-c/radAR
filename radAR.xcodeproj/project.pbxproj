@@ -14,7 +14,6 @@
 		7531C5C71F88AD91009223EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7531C5C61F88AD91009223EC /* Assets.xcassets */; };
 		7531C5CA1F88AD91009223EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7531C5C81F88AD91009223EC /* LaunchScreen.storyboard */; };
 		BAB8A79E1F88B08D00464DE9 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB8A79D1F88B08D00464DE9 /* UserDefaults.swift */; };
-
 		BAB8A7A51F88E95900464DE9 /* bear.obj in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A7A31F88E90D00464DE9 /* bear.obj */; };
 		BAB8A7A61F88E95C00464DE9 /* bear.mtl in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A7A41F88E91400464DE9 /* bear.mtl */; };
 /* End PBXBuildFile section */
@@ -28,8 +27,6 @@
 		7531C5C61F88AD91009223EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7531C5C91F88AD91009223EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7531C5CB1F88AD91009223EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7531C5D51F88E8D4009223EC /* bear.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = bear.mtl; sourceTree = "<group>"; };
-		7531C5D61F88E8D4009223EC /* bear.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = bear.obj; sourceTree = "<group>"; };
 		BAB8A79D1F88B08D00464DE9 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		BAB8A7A31F88E90D00464DE9 /* bear.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = bear.obj; sourceTree = "<group>"; };
 		BAB8A7A41F88E91400464DE9 /* bear.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = bear.mtl; sourceTree = "<group>"; };
@@ -73,13 +70,8 @@
 				7531C5C81F88AD91009223EC /* LaunchScreen.storyboard */,
 				7531C5CB1F88AD91009223EC /* Info.plist */,
 				BAB8A79D1F88B08D00464DE9 /* UserDefaults.swift */,
-<<<<<<< Updated upstream
 				BAB8A7A31F88E90D00464DE9 /* bear.obj */,
 				BAB8A7A41F88E91400464DE9 /* bear.mtl */,
-=======
-				7531C5D51F88E8D4009223EC /* bear.mtl */,
-				7531C5D61F88E8D4009223EC /* bear.obj */,
->>>>>>> Stashed changes
 			);
 			path = radAR;
 			sourceTree = "<group>";
@@ -144,13 +136,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7531C5C01F88AD91009223EC /* art.scnassets in Resources */,
-<<<<<<< Updated upstream
 				BAB8A7A51F88E95900464DE9 /* bear.obj in Resources */,
 				7531C5CA1F88AD91009223EC /* LaunchScreen.storyboard in Resources */,
 				BAB8A7A61F88E95C00464DE9 /* bear.mtl in Resources */,
-=======
-				7531C5CA1F88AD91009223EC /* LaunchScreen.storyboard in Resources */,
->>>>>>> Stashed changes
 				7531C5C71F88AD91009223EC /* Assets.xcassets in Resources */,
 				7531C5C51F88AD91009223EC /* Main.storyboard in Resources */,
 			);
