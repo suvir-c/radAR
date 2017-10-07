@@ -77,7 +77,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 ////        let node = makeBearNode()
 //
 //    }
-
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
