@@ -18,11 +18,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    var urlPath = "http://192.241.200.251/arobject/"
+    
+    var param = ["lat": "37.8710434", "long": "-122.2507729", "alt": "10"]
+    
     fileprivate let locationManager = CLLocationManager()
     
     // Fake date rn because we don't have data
-    let testTarget: Target = Target(id: "test", lat: 37.8710434, long: -122.2507729, alt: 10)
-    
     var mostRecentUserLocation: CLLocation? {
         didSet {
             print("LOADED USER LOCATION")
@@ -31,7 +33,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     // Put API call here
     // Parse JSON to targetArray?
-    
     var targetNodes = [String: SCNNode]()
     
     lazy var bearObject: MDLObject = {
@@ -54,8 +55,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                     
                     existingNode.runAction(move)
                 }
-                    
-                    //otherwise, make a new node
+                    // otherwise, make a new node
                 else {
                     let newNode = makeBearNode()
                     targetNodes[target.id] = newNode
@@ -106,12 +106,41 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
     }
     
+    func buildQueryString(fromDictionary parameters: [String:String]) -> String {
+        var urlVars:[String] = []
+        
+        for (k, value) in parameters {
+            if let encodedValue = value.addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed) {
+                urlVars.append(k + "=" + encodedValue)
+            }
+        }
+        return urlVars.isEmpty ? "" : "?" + urlVars.joined(separator: "&")
+    }
+
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        urlPath += buildQueryString(fromDictionary:param)
+        let url = URL(string: urlPath)!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
         
         let configuration = ARWorldTrackingConfiguration()
         configuration.worldAlignment = .gravityAndHeading
         sceneView.session.run(configuration)
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            if let data = data {
+                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                print(json)
+            }
+        }
+        
+        task.resume()
         setUpLocationManager()
     }
     
@@ -129,27 +158,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //
 //    }
 
-    
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
-        
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
     }
 }
 
-
-
 // MARK: - CLLocationManagerDelegate
-
 extension ViewController: CLLocationManagerDelegate {
     
     func setUpLocationManager() {
@@ -160,7 +182,6 @@ extension ViewController: CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }
-        
         mostRecentUserLocation = locationManager.location
     }
     
@@ -195,3 +216,5 @@ extension String {
         return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
     }
 }
+
+
