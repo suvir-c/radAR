@@ -11,13 +11,14 @@ import CoreLocation
 import SceneKit
 
 struct Target {
-    // long, lat, alt
-    
+
+    let id: String
     let long: Double
     let lat: Double
     let alt: Double
     
-    init(lat: Double, long: Double, alt: Double) {
+    init(id: String, lat: Double, long: Double, alt: Double) {
+        self.id = id
         self.lat = lat
         self.long = long
         self.alt = alt
@@ -34,8 +35,7 @@ func sceneKitCoordinate(relativeTo userLocation: CLLocation) -> SCNVector3 {
     
     let altitudeScale: Double = 1/140 //1/20
     let upDownOffset = alt * altitudeScale
-    
-    //in .gravityAndHeading, (1, 1, 1) is (east, up, south)
+
     return SCNVector3(eastWestOffset, upDownOffset, -northSouthOffset)
 }
     

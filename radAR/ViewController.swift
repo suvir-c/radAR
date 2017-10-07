@@ -21,7 +21,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     fileprivate let locationManager = CLLocationManager()
     
     // Fake date rn because we don't have data
-    let target: Target = Target(lat: 37.8710434, long: -122.2507729, alt: 10)
+    let testTarget: Target = Target(id: "test", lat: 37.8710434, long: -122.2507729, alt: 10)
     
     var mostRecentUserLocation: CLLocation? {
         didSet {
@@ -30,17 +30,66 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     // Put API call here
-    func moveNode(_ node: SCNNode, userLocation: CLLocation) {
-        let move = SCNAction.move(
-            to: target.sceneKitCoordinate(relativeTo: userLocation), duration: 0.2)
-        
-        node.runAction(move)
-    }
+    // Parse JSON to targetArray?
+    
+    var targetNodes = [String: SCNNode]()
     
     lazy var bearObject: MDLObject = {
         let bearObjectURL = Bundle.main.url(forResource: "bear", withExtension: "obj")!
         return MDLAsset(url: bearObjectURL).object(at: 0)
     }()
+    
+    var targetArray: [Target] = [] {
+        didSet {
+            guard let userLocation = mostRecentUserLocation else {
+                return
+            }
+            
+            for target in targetArray {
+                //update existing node if it exists
+                if let existingNode = targetNodes[target.id] {
+                    let move = SCNAction.move (
+                        to: target.sceneKitCoordinate(relativeTo: userLocation),
+                        duration: 0.2)
+                    
+                    existingNode.runAction(move)
+                }
+                    
+                    //otherwise, make a new node
+                else {
+                    let newNode = makeBearNode()
+                    targetNodes[target.id] = newNode
+                    
+                    newNode.position = target.sceneKitCoordinate(relativeTo: userLocation)
+                    sceneView.scene.rootNode.addChildNode(newNode)
+                }
+            }
+        }
+    }
+    
+    func processJson(text: String) {
+        guard let targetData = text.toJSON() as? [[String: Any]] else {
+            return
+        }
+        
+        targetArray = targetData.map { target in
+            let id = target["call"] as? String ?? "Unknown"
+            let lat = target["lat"] as? Double ?? 0
+            let long = target["lng"] as? Double ?? 0
+            let alt = target["alt"] as? Double ?? 0
+            
+            let target = Target(
+                id: id,
+                lat: lat,
+                long: long,
+                alt: alt
+                )
+            
+            return target
+            }.filter { target in
+                return (target.id != "Unknown")
+        }
+    }
 
     func makeBearNode() -> SCNNode {
         let node = SCNNode(mdlObject: bearObject)
@@ -55,11 +104,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let bearNode = makeBearNode()
         
-        moveNode(bearNode, userLocation: mostRecentUserLocation!)
-        
         sceneView.scene.rootNode.addChildNode(bearNode)
-        
-        
+
         // Comment next line once app is ready - good to check performance
         sceneView.showsStatistics = true
     }
@@ -104,6 +150,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 }
 
+
+
 // MARK: - CLLocationManagerDelegate
 
 extension ViewController: CLLocationManagerDelegate {
@@ -141,5 +189,13 @@ extension MDLMaterial {
             let property = MDLMaterialProperty(name:value, semantic: key, url: url)
             self.setProperty(property)
         }
+    }
+}
+
+// MARK: - String Extension
+extension String {
+    func toJSON() -> Any? {
+        guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
+        return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
     }
 }
