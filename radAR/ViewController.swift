@@ -73,6 +73,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let node = makeBearNode()
         
         node.position = SCNVector3(x: 0, y: 0, z: 0)
+        node.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
     }
 
     
